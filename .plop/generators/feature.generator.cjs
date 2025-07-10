@@ -21,7 +21,7 @@ module.exports = function (plop) {
         type: 'addMany',
         destination: path.resolve(process.cwd(), 'src/features/{{kebabCase name}}'),
         base: path.resolve(__dirname, '../templates/feature'),
-        templateFiles: path.resolve(__dirname, '../templates/feature/**/*.{ts,tsx}'),
+        templateFiles: path.resolve(__dirname, '../templates/feature/**/*'),
       },
     ],
   });

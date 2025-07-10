@@ -1,4 +1,4 @@
-const featureGenerator = require('./generators/feature.generator.cts');
+const featureGenerator = require('./generators/feature.generator.cjs');
 
 module.exports = function (plop) {
   plop.setHelper('screamingSnakeCase', (text) => {
