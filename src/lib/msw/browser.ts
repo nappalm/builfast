@@ -1,4 +1,4 @@
-/* eslint-disable consistent-return */
+ 
 import { setupWorker } from 'msw/browser';
 import handlers from './browserHandlers';
 

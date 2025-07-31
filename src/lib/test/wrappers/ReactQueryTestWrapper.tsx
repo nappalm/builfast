@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, QueryClientProviderProps } from '@tanstack/react-query';
 import { PropsWithChildren } from 'react';
 
 const queryClientTests = new QueryClient({
@@ -17,6 +17,6 @@ export default function ReactQueryTestWrapper({ children }: PropsWithChildren) {
   return <QueryClientProvider client={queryClientTests}>{children}</QueryClientProvider>;
 }
 
-export const reactQueryWrapper = (props: any) => (
+export const reactQueryWrapper = (props: Omit<QueryClientProviderProps, 'client'>) => (
   <QueryClientProvider client={queryClientTests} {...props} />
 );
