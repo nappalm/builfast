@@ -9,7 +9,7 @@
     "lint": "eslint --ext .jsx,.js,.ts,.tsx src",
     "preview": "vite preview",
     "prepare": "husky",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "coverage": "vitest run --coverage",
     "plop": "plop --plopfile .plop/plopfile.cjs"
   },
