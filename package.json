@@ -11,7 +11,7 @@
     "prepare": "husky",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
-    "create-feature": "plop --plopfile .plop/plopfile.cjs"
+    "plop": "plop --plopfile .plop/plopfile.cjs"
   },
   "dependencies": {
     "@chakra-ui/anatomy": "^2.3.4",

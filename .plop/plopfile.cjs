@@ -1,4 +1,5 @@
 const featureGenerator = require('./generators/feature.generator.cjs');
+const featureOAuthGenerator = require('./generators/feature-oauth.generator.cjs');
 
 module.exports = function (plop) {
   plop.setHelper('screamingSnakeCase', (text) => {
@@ -10,4 +11,5 @@ module.exports = function (plop) {
   });
 
   featureGenerator(plop);
+  featureOAuthGenerator(plop);
 };

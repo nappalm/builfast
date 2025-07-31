@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 const useFileHandler = ({ accept = '*', multiple = false } = {}) => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<File[]>([]);
 
-  const onFileChange = (event) => {
-    const selectedFiles = Array.from(event.target.files);
+  const onFileChange = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    const selectedFiles = target.files ? Array.from(target.files) : [];
     setFiles(selectedFiles);
   };
 
@@ -22,7 +23,7 @@ const useFileHandler = ({ accept = '*', multiple = false } = {}) => {
     });
   };
 
-  const removeFile = (index) => {
+  const removeFile = (index: number) => {
     setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
   };
 
