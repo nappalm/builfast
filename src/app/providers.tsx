@@ -1,5 +1,5 @@
-import { ChakraProvider, ReactQueryClient } from '@/lib';
-import RouterProvider from './router';
+import { ChakraProvider, ReactQueryClient } from "@/lib";
+import RouterProvider from "./router";
 
 export default function Providers() {
   return (

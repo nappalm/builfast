@@ -1,13 +1,13 @@
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient } from "@tanstack/react-query";
 
 export const queryClientTests = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false,
-      networkMode: 'always',
+      networkMode: "always",
     },
     mutations: {
-      networkMode: 'always',
+      networkMode: "always",
     },
   },
 });

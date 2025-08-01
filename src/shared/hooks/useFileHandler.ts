@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-const useFileHandler = ({ accept = '*', multiple = false } = {}) => {
+const useFileHandler = ({ accept = "*", multiple = false } = {}) => {
   const [files, setFiles] = useState<File[]>([]);
 
   const onFileChange = (event: Event) => {
@@ -10,16 +10,16 @@ const useFileHandler = ({ accept = '*', multiple = false } = {}) => {
   };
 
   const openFileDialog = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
+    const input = document.createElement("input");
+    input.type = "file";
     input.accept = accept;
     input.multiple = multiple;
 
-    input.addEventListener('change', onFileChange);
+    input.addEventListener("change", onFileChange);
     input.click();
 
-    input.addEventListener('click', () => {
-      input.removeEventListener('change', onFileChange);
+    input.addEventListener("click", () => {
+      input.removeEventListener("change", onFileChange);
     });
   };
 

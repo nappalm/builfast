@@ -1,5 +1,5 @@
-import Component from '../components/HomeForm';
+import Component from "../components/HomeForm";
 
 export default function Home() {
-    return <Component />
+  return <Component />;
 }

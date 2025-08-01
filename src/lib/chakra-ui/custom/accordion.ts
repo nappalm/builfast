@@ -1,55 +1,59 @@
-import {accordionAnatomy as parts} from '@chakra-ui/anatomy';
-import {createMultiStyleConfigHelpers, defineStyle} from '@chakra-ui/styled-system';
+import { accordionAnatomy as parts } from "@chakra-ui/anatomy";
+import {
+  createMultiStyleConfigHelpers,
+  defineStyle,
+} from "@chakra-ui/styled-system";
 
-const {definePartsStyle, defineMultiStyleConfig} = createMultiStyleConfigHelpers(parts.keys);
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys);
 
 const baseStyleContainer = defineStyle({
-  borderTopWidth: '1px',
+  borderTopWidth: "1px",
   //   borderColor: 'inherit',
-  borderColor: 'black2a',
-  bg: 'black2',
+  borderColor: "black2a",
+  bg: "black2",
   _first: {
     borderTopWidth: 0,
-    borderTopRadius: 'xl',
+    borderTopRadius: "xl",
   },
   _last: {
-    borderBottomWidth: '1px',
-    borderBottomRadius: 'xl',
+    borderBottomWidth: "1px",
+    borderBottomRadius: "xl",
   },
 });
 
 const baseStyleButton = defineStyle({
-  transitionProperty: 'common',
-  transitionDuration: 'normal',
-  fontSize: 'md',
+  transitionProperty: "common",
+  transitionDuration: "normal",
+  fontSize: "md",
   _focusVisible: {
-    boxShadow: 'outline',
+    boxShadow: "outline",
   },
   _hover: {
-    bg: 'blackAlpha.50',
+    bg: "blackAlpha.50",
   },
   _disabled: {
     opacity: 0.4,
-    cursor: 'not-allowed',
+    cursor: "not-allowed",
   },
-  px: '4',
-  py: '5',
+  px: "4",
+  py: "5",
 });
 
 const baseStylePanel = defineStyle({
-  bg: 'black2a',
-  borderRadius: 'xl',
-  boxShadow: 'sm',
+  bg: "black2a",
+  borderRadius: "xl",
+  boxShadow: "sm",
   mx: 3,
   mb: 3,
-  pt: '4',
-  px: '4',
-  pb: '6',
+  pt: "4",
+  px: "4",
+  pb: "6",
 });
 
 const baseStyleIcon = defineStyle({
-  fontSize: '1.25em',
-  color: 'black3',
+  fontSize: "1.25em",
+  color: "black3",
 });
 
 const baseStyle = definePartsStyle({
@@ -59,4 +63,4 @@ const baseStyle = definePartsStyle({
   icon: baseStyleIcon,
 });
 
-export default defineMultiStyleConfig({baseStyle});
+export default defineMultiStyleConfig({ baseStyle });

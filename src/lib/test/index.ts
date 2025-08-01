@@ -1,3 +1,3 @@
-export * from './test-utils';
-export * from './setup';
-export * from './wrappers/ReactQueryTestWrapper';
+export * from "./test-utils";
+export * from "./setup";
+export * from "./wrappers/ReactQueryTestWrapper";

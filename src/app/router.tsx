@@ -1,8 +1,12 @@
-import { HOME_PATHS, homeRoutes } from '@/features/home';
-import { ONBOARDING_PATHS, onboardingRoutes } from '@/features/onboarding';
+import { HOME_PATHS, homeRoutes } from "@/features/home";
+import { ONBOARDING_PATHS, onboardingRoutes } from "@/features/onboarding";
 
-import { Layout } from '@/shared';
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import { Layout } from "@/shared";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 
 const routes = createBrowserRouter([
   {
@@ -17,7 +21,7 @@ const routes = createBrowserRouter([
         children: onboardingRoutes,
       },
       {
-        path: '*',
+        path: "*",
         element: <Navigate to={HOME_PATHS.base} replace />,
       },
     ],

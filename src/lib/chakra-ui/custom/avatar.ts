@@ -1,23 +1,28 @@
-import {avatarAnatomy as parts} from '@chakra-ui/anatomy';
-import {createMultiStyleConfigHelpers, cssVar, defineStyle} from '@chakra-ui/styled-system';
-import {isDark, randomColor} from '@chakra-ui/theme-tools';
-import themeSizes from '../foundations/sizes';
-import {runIfFn} from '../utils/run-if-fn';
+import { avatarAnatomy as parts } from "@chakra-ui/anatomy";
+import {
+  createMultiStyleConfigHelpers,
+  cssVar,
+  defineStyle,
+} from "@chakra-ui/styled-system";
+import { isDark, randomColor } from "@chakra-ui/theme-tools";
+import themeSizes from "../foundations/sizes";
+import { runIfFn } from "../utils/run-if-fn";
 
-const {definePartsStyle, defineMultiStyleConfig} = createMultiStyleConfigHelpers(parts.keys);
+const { definePartsStyle, defineMultiStyleConfig } =
+  createMultiStyleConfigHelpers(parts.keys);
 
-const $border = cssVar('avatar-border-color');
-const $bg = cssVar('avatar-bg');
-const $fs = cssVar('avatar-font-size');
-const $size = cssVar('avatar-size');
+const $border = cssVar("avatar-border-color");
+const $bg = cssVar("avatar-bg");
+const $fs = cssVar("avatar-font-size");
+const $size = cssVar("avatar-size");
 
 const baseStyleBadge = defineStyle({
-  border: '0.2em solid',
+  border: "0.2em solid",
   borderColor: $border.reference,
-  borderRadius: 'xl',
-  [$border.variable]: 'white',
+  borderRadius: "xl",
+  [$border.variable]: "white",
   _dark: {
-    [$border.variable]: 'colors.gray.800',
+    [$border.variable]: "colors.gray.800",
   },
 });
 
@@ -26,35 +31,35 @@ const baseStyleExcessLabel = defineStyle({
   fontSize: $fs.reference,
   width: $size.reference,
   height: $size.reference,
-  lineHeight: '1',
-  [$bg.variable]: 'colors.gray.200',
+  lineHeight: "1",
+  [$bg.variable]: "colors.gray.200",
   _dark: {
-    [$bg.variable]: 'colors.whiteAlpha.400',
+    [$bg.variable]: "colors.whiteAlpha.400",
   },
 });
 
-const baseStyleContainer = defineStyle(props => {
-  const {name, theme} = props;
-  const bg = name ? randomColor({string: name}) : 'colors.black2';
+const baseStyleContainer = defineStyle((props) => {
+  const { name, theme } = props;
+  const bg = name ? randomColor({ string: name }) : "colors.black2";
   const isBgDark = isDark(bg)(theme);
 
-  let color = 'white';
-  if (!isBgDark) color = 'black2';
+  let color = "white";
+  if (!isBgDark) color = "black2";
 
   return {
     bg: $bg.reference,
     fontSize: $fs.reference,
     color,
     borderColor: $border.reference,
-    verticalAlign: 'top',
+    verticalAlign: "top",
     width: $size.reference,
     height: $size.reference,
-    borderRadius: 'xl',
-    '&:not([data-loaded])': {
+    borderRadius: "xl",
+    "&:not([data-loaded])": {
       [$bg.variable]: bg,
     },
-    '& > img': {
-      borderRadius: 'xl',
+    "& > img": {
+      borderRadius: "xl",
     },
     // [$border.variable]: 'colors.white',
     // _dark: {
@@ -65,18 +70,18 @@ const baseStyleContainer = defineStyle(props => {
 
 const baseStyleLabel = defineStyle({
   fontSize: $fs.reference,
-  lineHeight: '1',
+  lineHeight: "1",
 });
 
-const baseStyle = definePartsStyle(props => ({
+const baseStyle = definePartsStyle((props) => ({
   badge: runIfFn(baseStyleBadge, props),
   excessLabel: runIfFn(baseStyleExcessLabel, props),
   container: runIfFn(baseStyleContainer, props),
   label: baseStyleLabel,
 }));
 
-function getSize(size: keyof typeof themeSizes | '100%') {
-  const themeSize = size !== '100%' ? themeSizes[size] : undefined;
+function getSize(size: keyof typeof themeSizes | "100%") {
+  const themeSize = size !== "100%" ? themeSizes[size] : undefined;
   return definePartsStyle({
     container: {
       [$size.variable]: themeSize ?? size,
@@ -90,20 +95,20 @@ function getSize(size: keyof typeof themeSizes | '100%') {
 }
 
 const sizes = {
-  '2xs': getSize(4),
+  "2xs": getSize(4),
   xs: getSize(6),
   sm: getSize(8),
   md: getSize(12),
   lg: getSize(16),
   xl: getSize(24),
-  '2xl': getSize(32),
-  full: getSize('100%'),
+  "2xl": getSize(32),
+  full: getSize("100%"),
 };
 
 export default defineMultiStyleConfig({
   baseStyle,
   sizes,
   defaultProps: {
-    size: 'sm',
+    size: "sm",
   },
 });

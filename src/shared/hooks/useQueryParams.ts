@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const useQueryParams = (defaultParams = {}) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,7 +30,10 @@ const useQueryParams = (defaultParams = {}) => {
     });
 
     if (Object.keys(missingDefaults).length > 0) {
-      setSearchParams({ ...currentParams, ...missingDefaults }, { replace: true });
+      setSearchParams(
+        { ...currentParams, ...missingDefaults },
+        { replace: true },
+      );
     }
   }, [searchParams, setSearchParams, defaultParams, hasOwnProperty]);
 

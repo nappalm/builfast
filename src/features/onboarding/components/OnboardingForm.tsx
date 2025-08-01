@@ -3,5 +3,5 @@ export default function OnboardingForm() {
     <div>
       <p>Onboarding</p>
     </div>
-  )
+  );
 }

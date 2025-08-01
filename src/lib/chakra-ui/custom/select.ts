@@ -1,33 +1,38 @@
-import {selectAnatomy as parts} from '@chakra-ui/anatomy';
-import {createMultiStyleConfigHelpers, cssVar, defineStyle} from '@chakra-ui/styled-system';
-import inputTheme from './input';
+import { selectAnatomy as parts } from "@chakra-ui/anatomy";
+import {
+  createMultiStyleConfigHelpers,
+  cssVar,
+  defineStyle,
+} from "@chakra-ui/styled-system";
+import inputTheme from "./input";
 
-const {defineMultiStyleConfig, definePartsStyle} = createMultiStyleConfigHelpers(parts.keys);
+const { defineMultiStyleConfig, definePartsStyle } =
+  createMultiStyleConfigHelpers(parts.keys);
 
-const $bg = cssVar('select-bg');
+const $bg = cssVar("select-bg");
 
 const baseStyleField = defineStyle({
   ...inputTheme.baseStyle?.field,
-  appearance: 'none',
-  paddingBottom: '1px',
-  lineHeight: 'normal',
+  appearance: "none",
+  paddingBottom: "1px",
+  lineHeight: "normal",
   bg: $bg.reference,
-  [$bg.variable]: 'colors.black2',
+  [$bg.variable]: "colors.black2",
   _dark: {
-    [$bg.variable]: 'colors.black2',
+    [$bg.variable]: "colors.black2",
   },
-  '> option, > optgroup': {
+  "> option, > optgroup": {
     bg: $bg.reference,
   },
 });
 
 const baseStyleIcon = defineStyle({
-  width: '6',
-  height: '100%',
-  insetEnd: '2',
-  position: 'relative',
-  color: 'currentColor',
-  fontSize: 'xl',
+  width: "6",
+  height: "100%",
+  insetEnd: "2",
+  position: "relative",
+  color: "currentColor",
+  fontSize: "xl",
   _disabled: {
     opacity: 0.5,
   },
@@ -39,7 +44,7 @@ const baseStyle = definePartsStyle({
 });
 
 const iconSpacing = defineStyle({
-  paddingInlineEnd: '8',
+  paddingInlineEnd: "8",
 });
 
 const sizes = {
@@ -71,7 +76,7 @@ const sizes = {
       ...iconSpacing,
     },
     icon: {
-      insetEnd: '1',
+      insetEnd: "1",
     },
   },
 };

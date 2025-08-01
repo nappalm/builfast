@@ -1,5 +1,5 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system"
-import inputTheme from "./input"
+import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system";
+import inputTheme from "./input";
 
 const baseStyle = defineStyle({
   ...inputTheme.baseStyle?.field,
@@ -7,7 +7,7 @@ const baseStyle = defineStyle({
   minHeight: "20",
   lineHeight: "short",
   verticalAlign: "top",
-})
+});
 
 const variants = {
   outline: defineStyle(
@@ -20,14 +20,14 @@ const variants = {
     (props) => inputTheme.variants?.filled(props).field ?? {},
   ),
   unstyled: inputTheme.variants?.unstyled.field ?? {},
-}
+};
 
 const sizes = {
   xs: inputTheme.sizes?.xs.field ?? {},
   sm: inputTheme.sizes?.sm.field ?? {},
   md: inputTheme.sizes?.md.field ?? {},
   lg: inputTheme.sizes?.lg.field ?? {},
-}
+};
 
 export default defineStyleConfig({
   baseStyle,
@@ -37,4 +37,4 @@ export default defineStyleConfig({
     size: "md",
     variant: "filled",
   },
-})
+});
