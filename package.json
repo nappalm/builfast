@@ -1,8 +1,10 @@
 {
-  "name": "frontend",
-  "private": true,
-  "version": "0.0.0",
+  "name": "buildfast",
+  "version": "1.0.0",
   "type": "module",
+  "bin": {
+    "buildfast": "bin/buildfast.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/generate-sitemap.js",
