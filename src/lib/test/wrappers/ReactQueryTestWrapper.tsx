@@ -1,17 +1,7 @@
-import { QueryClient, QueryClientProvider, QueryClientProviderProps } from '@tanstack/react-query';
+/* eslint-disable react-refresh/only-export-components */
+import { QueryClientProvider, QueryClientProviderProps } from '@tanstack/react-query';
 import { PropsWithChildren } from 'react';
-
-const queryClientTests = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      networkMode: 'always',
-    },
-    mutations: {
-      networkMode: 'always',
-    },
-  },
-});
+import { queryClientTests } from '../../react-query/query-client';
 
 export default function ReactQueryTestWrapper({ children }: PropsWithChildren) {
   return <QueryClientProvider client={queryClientTests}>{children}</QueryClientProvider>;

@@ -32,7 +32,7 @@ const useQueryParams = (defaultParams = {}) => {
     if (Object.keys(missingDefaults).length > 0) {
       setSearchParams({ ...currentParams, ...missingDefaults }, { replace: true });
     }
-  }, [searchParams, setSearchParams, defaultParams]);
+  }, [searchParams, setSearchParams, defaultParams, hasOwnProperty]);
 
   const currentParamsWithDefaults = {
     ...defaultParams,
