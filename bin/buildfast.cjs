@@ -7,30 +7,47 @@
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const readline = require('readline');
 
-const projectName = process.argv[2];
+function promptForProjectName() {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
-if (!projectName) {
-  console.error('Please provide a project name.');
-  process.exit(1);
-}
-
-const currentPath = process.cwd();
-const projectPath = path.join(currentPath, projectName);
-const gitRepo = 'https://github.com/nappalm/builfast.git';
-
-try {
-  fs.mkdirSync(projectPath);
-} catch (err) {
-  if (err.code === 'EEXIST') {
-    console.error(`The directory ${projectName} already exists.`);
-  } else {
-    console.error(err);
-  }
-  process.exit(1);
+  return new Promise(resolve => {
+    rl.question('Please provide a project name: ', name => {
+      rl.close();
+      if (!name || !name.trim()) {
+        console.error('Project name cannot be empty.');
+        process.exit(1);
+      }
+      resolve(name.trim());
+    });
+  });
 }
 
 async function main() {
+  let projectName = process.argv[2];
+  if (!projectName) {
+    projectName = await promptForProjectName();
+  }
+
+  const currentPath = process.cwd();
+  const projectPath = path.join(currentPath, projectName);
+  const gitRepo = 'https://github.com/nappalm/builfast.git';
+
+  try {
+    fs.mkdirSync(projectPath);
+  } catch (err) {
+    if (err.code === 'EEXIST') {
+      console.error(`The directory ${projectName} already exists.`);
+    } else {
+      console.error(err);
+    }
+    process.exit(1);
+  }
+
   try {
     console.log(`Cloning the repository into ${projectPath}...`);
     execSync(`git clone ${gitRepo} ${projectPath}`);
