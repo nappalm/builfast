@@ -1,14 +1,23 @@
-# About the template (delete this)
+![banner](public/banner.jpg)
 
-This project is intended to serve as a base codebase for Frontend projects using the following technologies:
+# BuildFast | AI-Driven Boilerplate for Faster Launch and Scale of Frontend SPAs
+
+Welcome to Buildfast! This documentation will guide you through the core concepts and features of the boilerplate.
+
+## 1. About the project:
+
+This project is intended to serve as a base codebase for Frontend projects using the following technologies, with the aim of speeding up the development and scaling of Single Page Applications (SPAs):
 
 - React
 - [React Router Dom](https://reactrouter.com/en/main): for application navigation
-- Husky, Airbnb, commit linter: tools for code quality and commit message review.
+- Husky, Eslint, commit linter: tools for code quality and commit message review
 - [Vitest](https://vitest.dev/): library for unit testing
 - [React Query](https://tanstack.com/query/latest): library for API management
+- [Chakra UI](https://chakra-ui.com/): component library for building accessible React applications
+- [Axios](https://axios-http.com/): promise-based HTTP client for the browser and node.js
+- [Supabase](https://supabase.com/): open-source Firebase alternative
 
-## Directory Organization and General Rules
+## 2. Directory Organization
 
 #### `src/app/`: Global application configuration
 
@@ -36,33 +45,23 @@ Contains instances, configurations, or extensions of external tools (e.g., Axios
 
 Components, utilities, constants, helpers, and any other cross-cutting piece that doesn't belong to a specific feature.
 
-## Screaming Architecture Rules
+## 3. Screaming Architecture Rules
 
 This is a set of rules and guidelines to maintain the project's architectural integrity and scalability.
 
-<details>
-  <summary><strong>1. Organize by Domain, not by Technical Type</strong></summary>
+#### 1. Organize by Domain, not by Technical Type
 
 The main code structure should be in the `src/features` folder. Each subfolder represents a business capability (`products`, `auth`, `orders`), not a file type (`pages`, `components`).
 
-</details>
-
-<details>
-  <summary><strong>2. Features are Vertical, Self-Contained Modules</strong></summary>
+#### 2. Features are Vertical, Self-Contained Modules
 
 Each feature folder should contain everything it needs to function: its own API, components, hooks, routes, assets, and tests. A feature is a mini-application.
 
-</details>
-
-<details>
-  <summary><strong>3. Every Feature has a Public API (<code>index.js</code>)</strong></summary>
+#### 3. Every Feature has a Public API (`index.js`)
 
 Communication between features or from the application to a feature must occur only through its `index.js` file, which acts as its facade or public contract.
 
-</details>
-
-<details>
-  <summary><strong>4. The Public API is Minimal and Deliberate</strong></summary>
+#### 4. The Public API is Minimal and Deliberate
 
 Only what is strictly necessary for external interaction should be exported. By default, this is limited to:
 
@@ -71,24 +70,15 @@ Only what is strictly necessary for external interaction should be exported. By 
 - Navigation constants (e.g., `PRODUCTS_PATHS`).
 - "Widget" components explicitly designed to be shared.
 
-</details>
-
-<details>
-  <summary><strong>5. Implementation Details are Private</strong></summary>
+#### 5. Implementation Details are Private
 
 Fetcher functions (`getProductList`), internal components (`ProductCard`), and internally used hooks should not be exported in the feature's public API.
 
-</details>
-
-<details>
-  <summary><strong>6. Shared Code (<code>@shared</code>) is for Generic Logic</strong></summary>
+#### 6. Shared Code (`@shared`) is for Generic Logic
 
 Root-level folders like `src/components`, `src/hooks`, `src/lib`, and `src/utils` are for code that is truly reusable and not tied to any specific business logic.
 
-</details>
-
-<details>
-  <summary><strong>7. Dependency is Primarily Unidirectional</strong></summary>
+#### 7. Dependency is Primarily Unidirectional
 
 1. As a general rule, a feature can import and use code from the shared folders (`@shared`).
 2. Code in `@shared` should not depend on the internal implementation details of a feature.
@@ -96,9 +86,7 @@ Root-level folders like `src/components`, `src/hooks`, `src/lib`, and `src/utils
 > **Key Exception**:
 > High-level structural components in `@shared` (like a `MainLayout`) can and should consume hooks exposed in a feature's public API (e.g., `useAuth` from `features/auth`) to reflect a global application state. This is a controlled and acceptable dependency.
 
-</details>
-
-# Running the project locally
+## 4. Running the project locally
 
 The project requires an environment variable configuration file. This file must be created in the project's root folder with the name **.env** and must contain the variables specified in the **.env_example** file.
 
