@@ -33,6 +33,8 @@ async function main() {
 
     process.chdir(projectPath);
 
+    execSync('rm -rf bin');
+
     console.log('Updating package.json...');
     const packageJsonPath = path.join(projectPath, 'package.json');
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
