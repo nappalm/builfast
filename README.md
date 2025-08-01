@@ -1,4 +1,4 @@
-![banner](public/banner.jpg)
+![banner](https://github.com/nappalm/builfast/raw/master/public/banner.jpg)
 
 # BuildFast | AI-Driven Boilerplate for Faster Launch and Scale of Frontend SPAs
 
