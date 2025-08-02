@@ -27,39 +27,6 @@ function promptForProjectName() {
   });
 }
 
-function promptForRemoteSetup() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  return new Promise(resolve => {
-    rl.question('Would you like to set up a remote repository? (y/N) ', answer => {
-      rl.close();
-      resolve(answer.trim().toLowerCase());
-    });
-  });
-}
-
-function promptForRepoURL() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  return new Promise(resolve => {
-    rl.question('Please enter the remote repository URL: ', url => {
-      rl.close();
-      if (!url || !url.trim()) {
-        console.error('URL cannot be empty. Skipping remote setup.');
-        resolve(null);
-      } else {
-        resolve(url.trim());
-      }
-    });
-  });
-}
-
 async function main() {
   let projectName = process.argv[2];
   if (!projectName) {
@@ -104,26 +71,6 @@ async function main() {
     execSync('git init -b main');
     execSync('git add .');
     execSync('git commit -m "feat: initial commit"');
-
-    const setupRemoteAnswer = await promptForRemoteSetup();
-    if (setupRemoteAnswer === 'y' || setupRemoteAnswer === 'yes') {
-      const repoURL = await promptForRepoURL();
-      if (repoURL) {
-        try {
-          console.log('Setting up remote repository...');
-          execSync(`git remote add origin ${repoURL}`);
-          console.log('Pushing to remote...');
-          execSync('git push -u origin main');
-          console.log('Remote repository set up successfully.');
-        } catch (gitError) {
-          console.error('\nAn error occurred while setting up the remote repository.');
-          console.error('Please check the URL and ensure you have the correct permissions.');
-          console.error('You can set it up manually later by running:');
-          console.error(`  git remote add origin ${repoURL}`);
-          console.error('  git push -u origin main');
-        }
-      }
-    }
 
     console.log('\nDone! Your project is ready.\n');
     console.log(`To get started, run:\n`);
