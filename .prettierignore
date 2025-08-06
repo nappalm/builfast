@@ -1,5 +1,6 @@
 public
 node_modules
+.plop/templates
 build
 dist
 dist-ssr

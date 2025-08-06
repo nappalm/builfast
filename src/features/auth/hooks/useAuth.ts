@@ -8,6 +8,8 @@ export function useAuth() {
   const signInWithEmail = async (email: string, password: string) => {
     setLoading(true);
     setError(null);
+
+    if (!supabase) return;
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -21,6 +23,8 @@ export function useAuth() {
   const signUpWithEmail = async (email: string, password: string) => {
     setLoading(true);
     setError(null);
+
+    if (!supabase) return;
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) {
       setError(error.message);
@@ -31,6 +35,8 @@ export function useAuth() {
   const signInWithOAuth = async (provider: "github" | "google") => {
     setLoading(true);
     setError(null);
+
+    if (!supabase) return;
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
     });
@@ -43,6 +49,8 @@ export function useAuth() {
   const signOut = async () => {
     setLoading(true);
     setError(null);
+
+    if (!supabase) return;
     const { error } = await supabase.auth.signOut();
     if (error) {
       setError(error.message);
