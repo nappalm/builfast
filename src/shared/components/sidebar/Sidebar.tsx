@@ -1,10 +1,12 @@
-import { Box, Button, Divider, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Collapse, Divider, Stack, Text } from "@chakra-ui/react";
 import {
   IconApps,
   IconAppWindow,
   IconBookUpload,
   IconBrandGithubCopilot,
   IconBrandParsinta,
+  IconChevronDown,
+  IconChevronUp,
   IconDevicesPc,
   IconGitBranch,
   IconKey,
@@ -19,7 +21,7 @@ import {
   IconUsers,
   IconWebhook,
 } from "@tabler/icons-react";
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 
 type ButtonProps = {
   size: string;
@@ -30,6 +32,18 @@ type ButtonProps = {
 type IconProps = {
   size: number;
   color: string;
+};
+
+type SubmenuItem = {
+  title: string;
+};
+
+type SidebarItem = {
+  title: string;
+  icon?: ReactElement;
+  variant?: string;
+  isHeader?: boolean;
+  submenu?: SubmenuItem[];
 };
 
 const buttonProps: ButtonProps = {
@@ -43,12 +57,7 @@ const iconProps: IconProps = {
   color: "#718096",
 };
 
-const sidebarItems: {
-  title: string;
-  icon?: ReactElement;
-  variant?: string;
-  isHeader?: boolean;
-}[] = [
+const sidebarItems: SidebarItem[] = [
   {
     title: "General",
     icon: <IconSettings {...iconProps} />,
@@ -93,6 +102,14 @@ const sidebarItems: {
   {
     title: "Copilot",
     icon: <IconBrandGithubCopilot {...iconProps} />,
+    submenu: [
+      {
+        title: "Code review",
+      },
+      {
+        title: "Coding agent",
+      },
+    ],
   },
   {
     title: "Environtments",
@@ -121,6 +138,17 @@ const sidebarItems: {
   {
     title: "Secrets and variables",
     icon: <IconSquareAsterisk {...iconProps} />,
+    submenu: [
+      {
+        title: "Actions",
+      },
+      {
+        title: "Dependabot",
+      },
+      {
+        title: "Codespaces",
+      },
+    ],
   },
   {
     title: "Integrations",
@@ -137,6 +165,15 @@ const sidebarItems: {
 ];
 
 const Sidebar: FC = () => {
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
+
+  const handleToggleSubmenu = (title: string) => {
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
+  };
+
   return (
     <Stack width="296px" gap="1px" position="relative">
       {sidebarItems.map((item, index) => {
@@ -150,6 +187,47 @@ const Sidebar: FC = () => {
             </div>
           );
         }
+
+        if (item.submenu) {
+          const isOpen = openSubmenus[item.title];
+          return (
+            <Box key={index} w="full">
+              <Button
+                {...buttonProps}
+                w="inherit"
+                rightIcon={
+                  isOpen ? (
+                    <IconChevronUp size={16} />
+                  ) : (
+                    <IconChevronDown size={16} />
+                  )
+                }
+                onClick={() => handleToggleSubmenu(item.title)}
+                leftIcon={item.icon}
+              >
+                <Text as="span" w="full" textAlign="left">
+                  {item.title}
+                </Text>
+              </Button>
+              <Collapse in={isOpen}>
+                <Stack mt={1} gap="1px">
+                  {item.submenu.map((subItem) => (
+                    <Button
+                      {...buttonProps}
+                      w="inherit"
+                      key={subItem.title}
+                      pl={9}
+                      fontSize="xs"
+                    >
+                      {subItem.title}
+                    </Button>
+                  ))}
+                </Stack>
+              </Collapse>
+            </Box>
+          );
+        }
+
         return (
           <Box
             key={index}

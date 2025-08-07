@@ -18,7 +18,6 @@ export default function UserMenu() {
   return (
     <HStack>
       <Avatar
-        bg="gray.900"
         src={user?.user_metadata?.avatar_url}
         size="xs"
         name={user?.user_metadata?.name}

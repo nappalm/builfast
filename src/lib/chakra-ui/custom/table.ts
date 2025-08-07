@@ -1,5 +1,6 @@
 import { tableAnatomy } from "@chakra-ui/anatomy";
 import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 // import { mode } from "@chakra-ui/theme-tools";
 
 const { definePartsStyle, defineMultiStyleConfig } =
@@ -18,7 +19,7 @@ const variantSolid = definePartsStyle((props) => {
       // borderColor: "table.border",
       height: "40px",
       textTransform: "capitalize",
-      color: "table.thColor",
+      color: mode("gray.600", "whiteAlpha.100"),
       fontWeight: 500,
       "&:first-of-type": {
         borderTopLeftRadius: "xl",
@@ -28,7 +29,7 @@ const variantSolid = definePartsStyle((props) => {
         borderTopRightRadius: "xl",
         borderBottomRightRadius: "xl",
       },
-      bg: "gray.900",
+      bg: mode("gray.300", "whiteAlpha.200")(props),
       "&[data-is-numeric=true]": {
         textAlign: "end",
       },
@@ -54,7 +55,7 @@ const variantSolid = definePartsStyle((props) => {
       color: colorMode === "light" ? `${c}.600` : `table.caption`,
     },
     tbody: {
-      bg: "table.body",
+      // bg: "table.body",
       tr: {
         "&:nth-of-type(odd)": {
           "th, td": {
