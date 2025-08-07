@@ -54,7 +54,7 @@ const buttonProps: ButtonProps = {
 
 const iconProps: IconProps = {
   size: 17,
-  color: "#718096",
+  color: "#52525B",
 };
 
 const sidebarItems: SidebarItem[] = [
