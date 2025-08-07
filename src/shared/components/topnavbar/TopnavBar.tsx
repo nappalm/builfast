@@ -1,4 +1,5 @@
 import { HStack, Image } from "@chakra-ui/react";
+import ToggleThemeButton from "./ToggleThemeButton";
 import UserMenu from "./UserMenu";
 
 export default function Topnavber() {
@@ -12,7 +13,10 @@ export default function Topnavber() {
       borderColor="#cccccc20"
     >
       <Image src="/logo.png" alt="logo" />
-      <UserMenu />
+      <HStack>
+        <ToggleThemeButton />
+        <UserMenu />
+      </HStack>
     </HStack>
   );
 }

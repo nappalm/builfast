@@ -152,6 +152,7 @@ const Sidebar: FC = () => {
         }
         return (
           <Box
+            key={index}
             position="relative"
             w="full"
             _before={
@@ -173,7 +174,6 @@ const Sidebar: FC = () => {
               {...buttonProps}
               variant={item.variant || "ghost"}
               leftIcon={item.icon}
-              key={index}
               w="inherit"
             >
               {item.title}
