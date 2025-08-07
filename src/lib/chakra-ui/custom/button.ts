@@ -1,12 +1,11 @@
 import { defineStyle, defineStyleConfig } from "@chakra-ui/styled-system";
 import { mode, transparentize } from "@chakra-ui/theme-tools";
 import { runIfFn } from "../utils/run-if-fn";
-import _colors from "../_colors";
 
 const baseStyle = defineStyle({
   lineHeight: "1.2",
-  borderRadius: "lg",
-  fontWeight: 500,
+  borderRadius: "xl",
+  fontWeight: "semibold",
   transitionProperty: "common",
   transitionDuration: "normal",
   _focusVisible: {
@@ -31,9 +30,9 @@ const variantGhost = defineStyle((props) => {
     return {
       color: mode(`gray.800`, `whiteAlpha.900`)(props),
       _hover: {
-        bg: mode(`gray.100`, `base.400`)(props),
+        bg: mode(`gray.100`, `whiteAlpha.200`)(props),
       },
-      _active: { bg: mode(`gray.200`, `base.300`)(props) },
+      _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
     };
   }
 
@@ -66,51 +65,67 @@ const variantOutline = defineStyle((props) => {
   };
 });
 
-const variantPrimary = defineStyle((props) => {
+type AccessibleColor = {
+  bg?: string;
+  color?: string;
+  hoverBg?: string;
+  activeBg?: string;
+};
+
+/** Accessible color overrides for less accessible colors. */
+const accessibleColorMap: { [key: string]: AccessibleColor } = {
+  yellow: {
+    bg: "yellow.400",
+    color: "black",
+    hoverBg: "yellow.500",
+    activeBg: "yellow.600",
+  },
+  cyan: {
+    bg: "cyan.400",
+    color: "black",
+    hoverBg: "cyan.500",
+    activeBg: "cyan.600",
+  },
+};
+
+const variantSolid = defineStyle((props) => {
+  const { colorScheme: c } = props;
+
+  if (c === "gray") {
+    const bg = mode(`gray.100`, `whiteAlpha.200`)(props);
+
+    return {
+      bg,
+      color: mode(`gray.800`, `whiteAlpha.900`)(props),
+      _hover: {
+        bg: mode(`gray.200`, `whiteAlpha.300`)(props),
+        _disabled: {
+          bg,
+        },
+      },
+      _active: { bg: mode(`gray.300`, `whiteAlpha.400`)(props) },
+    };
+  }
+
+  const {
+    bg = `${c}.100`,
+    color = "white",
+    hoverBg = `${c}.500`,
+    activeBg = `${c}.500`,
+  } = accessibleColorMap[c] ?? {};
+
+  const background = mode(bg, `${c}.500`)(props);
+
   return {
-    color: mode("body.light", "body.dark")(props),
-    bg: `linear-gradient(137.74deg, ${_colors.green[400]} 19.53%, ${_colors.green[600]} 95%)`,
-    border: "1px solid",
-    boxShadow: "none",
-    borderColor: _colors.green[400],
-    transition: "all 0.2s ease-in-out",
+    bg: background,
+    color: mode(color, `gray.100`)(props),
     _hover: {
-      bg: `linear-gradient(137.74deg, ${_colors.green[500]} 19.53%, ${_colors.green[500]} 95%)`,
+      bg: mode(hoverBg, `${c}.500`)(props),
       _disabled: {
-        bg: `linear-gradient(137.74deg, ${_colors.green[400]} 19.53%, ${_colors.green[600]} 95%)`,
+        bg: background,
       },
     },
-    _active: {
-      bg: `linear-gradient(137.74deg, ${_colors.green[400]} 19.53%, ${_colors.green[600]} 95%)`,
-    },
-  };
-});
-
-const variantError = defineStyle(() => {
-  return {
-    color: "body.dark",
-    bg: `linear-gradient(137.74deg, ${_colors.red[400]} 19.53%, ${_colors.red[600]} 95%)`,
-    border: "1px solid",
-    boxShadow: "none",
-    borderColor: _colors.red[400],
-    transition: "all 0.2s ease-in-out",
-    _hover: {
-      bg: `linear-gradient(137.74deg, ${_colors.red[500]} 19.53%, ${_colors.red[500]} 95%)`,
-    },
-    _active: {
-      bg: `linear-gradient(137.74deg, ${_colors.red[400]} 19.53%, ${_colors.red[600]} 95%)`,
-    },
-  };
-});
-
-const variantSecondary = defineStyle(() => {
-  return {
-    bg: "button.secondary.bg",
-    border: "1px solid",
-    borderColor: "button.secondary.border",
-    _hover: {
-      bg: "button.secondary.border",
-    },
+    _active: { bg: mode(activeBg, `${c}.500`)(props) },
   };
 });
 
@@ -143,35 +158,12 @@ const variantUnstyled = defineStyle({
   p: "0",
 });
 
-const variantSidebar = defineStyle((props) => {
-  const { isActive } = props;
-
-  return {
-    variant: "ghost",
-    gap: 2,
-    pl: 2,
-    justifyContent: "flex-start",
-    h: "32px",
-    w: "full",
-    letterSpacing: -0.4,
-    color: isActive ? "sidebar.buttonActive" : "sidebar.button",
-    bg: isActive ? "button.secondary.bg" : undefined,
-    _hover: {
-      bg: "button.secondary.bg",
-      color: "sidebar.buttonActive",
-    },
-  };
-});
-
 const variants = {
   ghost: variantGhost,
   outline: variantOutline,
+  solid: variantSolid,
   link: variantLink,
   unstyled: variantUnstyled,
-  primary: variantPrimary,
-  secondary: variantSecondary,
-  error: variantError,
-  sidebar: variantSidebar,
 };
 
 const sizes = {
@@ -182,7 +174,7 @@ const sizes = {
     px: "6",
   }),
   md: defineStyle({
-    h: "9",
+    h: "10",
     minW: "10",
     fontSize: "md",
     px: "4",
@@ -206,7 +198,8 @@ export default defineStyleConfig({
   variants,
   sizes,
   defaultProps: {
-    variant: "primary",
+    variant: "solid",
     size: "md",
+    colorScheme: "gray",
   },
 });

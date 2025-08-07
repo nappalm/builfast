@@ -38,7 +38,9 @@ export default function SignInForm({
         <Stack>
           <RHFInput name="email" label="Email" />
           <RHFInput name="password" label="Password" />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" colorScheme="blue">
+            Submit
+          </Button>
         </Stack>
       </FormProvider>
 
@@ -51,7 +53,7 @@ export default function SignInForm({
       </Stack>
       <Text mt={4} textAlign="center">
         Don't have an account?{" "}
-        <Link as={RouterLink} to={AUTH_PATHS.signUp} color="teal.500">
+        <Link as={RouterLink} to={AUTH_PATHS.signUp} color="blue.500">
           Sign Up
         </Link>
       </Text>

@@ -7,7 +7,7 @@ interface Props {
 export default function RHFError({ error }: Props) {
   if (!error) return null;
   return (
-    <Text pt="2px" fontSize="12px" color="red.500">
+    <Text fontSize="12px" color="red.500" px={3}>
       {error}
     </Text>
   );
