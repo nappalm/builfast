@@ -1,8 +1,9 @@
 import { AUTH_PATHS, AuthGuard, authRoutes } from "@/features/auth";
 import { HOME_PATHS, homeRoutes } from "@/features/home";
 import { ONBOARDING_PATHS, onboardingRoutes } from "@/features/onboarding";
+import { SETTINGS_PATHS, settingsRoutes } from "@/features/settings";
 
-import { BaseLayout } from "@/shared";
+import { BaseLayout, SettingsLayout } from "@/shared";
 import {
   createBrowserRouter,
   Navigate,
@@ -25,6 +26,27 @@ const protectedRoutes = [
       {
         path: ONBOARDING_PATHS.base,
         children: onboardingRoutes,
+      },
+      {
+        path: "*",
+        element: <Navigate to={HOME_PATHS.base} replace />,
+      },
+    ],
+  },
+];
+
+/**
+ * @constant settingRoutes
+ * @description These routes are protected by the AuthGuard and are only accessible to authenticated users.
+ * These routes are rendered within the SettingsLayout, which is specific to the settings section of the application.
+ */
+const settingRoutes = [
+  {
+    element: <SettingsLayout />,
+    children: [
+      {
+        path: SETTINGS_PATHS.base,
+        children: settingsRoutes,
       },
       {
         path: "*",
@@ -61,7 +83,7 @@ const publicRoutes = [
 const routerConfiguration = [
   {
     element: <AuthGuard />,
-    children: protectedRoutes,
+    children: [...protectedRoutes, ...settingRoutes],
   },
   ...publicRoutes,
 ];

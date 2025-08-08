@@ -3,13 +3,15 @@ import { Outlet } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import { TopnavBar } from "../../topnavbar";
+import UserInformation from "./UserInformation";
 
 export default function Layout() {
   return (
     <Stack>
       <Box as="main">
         <TopnavBar />
-        <Container maxW="container.xl">
+        <Container maxW="container.xl" pt={5}>
+          <UserInformation />
           <Grid
             gridAutoFlow="column"
             gridTemplateColumns="auto minmax(0, calc(100% - 226px - 24px))"

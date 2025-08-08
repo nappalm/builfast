@@ -1,25 +1,11 @@
 import { Box, Button, Collapse, Divider, Stack, Text } from "@chakra-ui/react";
 import {
-  IconApps,
-  IconAppWindow,
-  IconBookUpload,
-  IconBrandGithubCopilot,
-  IconBrandParsinta,
+  IconBell,
   IconChevronDown,
   IconChevronUp,
-  IconDevicesPc,
-  IconGitBranch,
-  IconKey,
-  IconMail,
-  IconMessages,
-  IconServer,
-  IconSettings,
-  IconShape,
-  IconShieldCheck,
-  IconSquareAsterisk,
-  IconTag,
-  IconUsers,
-  IconWebhook,
+  IconCreditCard,
+  IconShieldBolt,
+  IconUserCircle,
 } from "@tabler/icons-react";
 import { FC, ReactElement, useState } from "react";
 
@@ -59,108 +45,24 @@ const iconProps: IconProps = {
 
 const sidebarItems: SidebarItem[] = [
   {
-    title: "General",
-    icon: <IconSettings {...iconProps} />,
-    variant: "solid",
+    title: "Account",
+    icon: <IconUserCircle {...iconProps} />,
   },
   {
-    title: "Collaborators",
-    icon: <IconUsers {...iconProps} />,
+    title: "Notifications",
+    icon: <IconBell {...iconProps} />,
   },
   {
-    title: "Moderation options",
-    icon: <IconMessages {...iconProps} />,
-  },
-  {
-    title: "Code and automatitation",
+    title: "Plans and security",
     isHeader: true,
   },
   {
-    title: "Branchs",
-    icon: <IconGitBranch {...iconProps} />,
+    title: "Billing and Plans",
+    icon: <IconCreditCard {...iconProps} />,
   },
   {
-    title: "Tags",
-    icon: <IconTag {...iconProps} />,
-  },
-  {
-    title: "Rules",
-    icon: <IconBookUpload {...iconProps} />,
-  },
-  {
-    title: "Actions",
-    icon: <IconBrandParsinta {...iconProps} />,
-  },
-  {
-    title: "Models",
-    icon: <IconShape {...iconProps} />,
-  },
-  {
-    title: "Webhooks",
-    icon: <IconWebhook {...iconProps} />,
-  },
-  {
-    title: "Copilot",
-    icon: <IconBrandGithubCopilot {...iconProps} />,
-    submenu: [
-      {
-        title: "Code review",
-      },
-      {
-        title: "Coding agent",
-      },
-    ],
-  },
-  {
-    title: "Environtments",
-    icon: <IconServer {...iconProps} />,
-  },
-  {
-    title: "Codespaces",
-    icon: <IconDevicesPc {...iconProps} />,
-  },
-  {
-    title: "Pages",
-    icon: <IconAppWindow {...iconProps} />,
-  },
-  {
-    title: "Secutiry",
-    isHeader: true,
-  },
-  {
-    title: "Advanced Secutiry",
-    icon: <IconShieldCheck {...iconProps} />,
-  },
-  {
-    title: "Deploy keys",
-    icon: <IconKey {...iconProps} />,
-  },
-  {
-    title: "Secrets and variables",
-    icon: <IconSquareAsterisk {...iconProps} />,
-    submenu: [
-      {
-        title: "Actions",
-      },
-      {
-        title: "Dependabot",
-      },
-      {
-        title: "Codespaces",
-      },
-    ],
-  },
-  {
-    title: "Integrations",
-    isHeader: true,
-  },
-  {
-    title: "GitHub Apps",
-    icon: <IconApps {...iconProps} />,
-  },
-  {
-    title: "Email notifications",
-    icon: <IconMail {...iconProps} />,
+    title: "Password and Authentication",
+    icon: <IconShieldBolt {...iconProps} />,
   },
 ];
 
