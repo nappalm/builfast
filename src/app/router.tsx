@@ -2,7 +2,7 @@ import { AUTH_PATHS, AuthGuard, authRoutes } from "@/features/auth";
 import { HOME_PATHS, homeRoutes } from "@/features/home";
 import { ONBOARDING_PATHS, onboardingRoutes } from "@/features/onboarding";
 
-import { Layout } from "@/shared";
+import { BaseLayout } from "@/shared";
 import {
   createBrowserRouter,
   Navigate,
@@ -16,7 +16,7 @@ import {
  */
 const protectedRoutes = [
   {
-    element: <Layout />,
+    element: <BaseLayout />,
     children: [
       {
         path: HOME_PATHS.base,

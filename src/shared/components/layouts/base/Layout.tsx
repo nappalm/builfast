@@ -1,7 +1,8 @@
 import { Box, Container, Grid, Stack } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import { Sidebar } from "../sidebar";
-import { TopnavBar } from "../topnavbar";
+
+import Sidebar from "./Sidebar";
+import { TopnavBar } from "../../topnavbar";
 
 export default function Layout() {
   return (
