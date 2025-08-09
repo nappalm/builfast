@@ -1,5 +1,13 @@
-import Component from "../components/SettingsForm";
+import { Heading, Stack } from "@chakra-ui/react";
+import AccountForm from "../components/AccountForm";
 
 export default function Settings() {
-  return <Component />;
+  return (
+    <Stack w="50%">
+      <Heading size="lg" fontWeight={500}>
+        Account
+      </Heading>
+      <AccountForm />
+    </Stack>
+  );
 }

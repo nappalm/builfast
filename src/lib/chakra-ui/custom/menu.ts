@@ -1,42 +1,36 @@
 import { menuAnatomy } from "@chakra-ui/anatomy";
 import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(menuAnatomy.keys);
 
-const baseStyle = definePartsStyle({
+const baseStyle = definePartsStyle((props) => ({
   list: {
     py: 0,
-    bg: "menu.bg",
+    bg: mode("#ffffff", "gray.900")(props),
     border: "1px solid",
-    borderColor: "menu.border",
+    borderColor: mode("gray.200", "gray.800")(props),
     p: 1,
-    boxShadow: "md",
+    boxShadow: "sm",
+    borderRadius: "xl",
+    overflow: "hidden",
   },
   item: {
     bg: "transparent",
-    borderTopRadius: "inherit",
-    borderBottomRadius: "inherit",
+    borderTopRadius: "md",
+    borderBottomRadius: "md",
     fontWeight: 500,
     fontSize: "sm",
     _focus: {
-      bg: "menu.border",
+      bg: mode("gray.200", "gray.800")(props),
     },
   },
-  //   command: {
-  //     // this will style the text defined by the command
-  //     // prop in the MenuItem and MenuItemOption components
-  //     opacity: '0.8',
-  //     fontFamily: 'mono',
-  //     fontSize: 'sm',
-  //     letterSpacing: 'tighter',
-  //     pl: '4',
-  //   },
   divider: {
     my: 1,
     borderBottom: "1px solid",
-    borderColor: "menu.border",
+    borderColor: mode("gray.200", "gray.800")(props),
   },
-});
-// export the base styles in the component theme
+}));
+
 export default defineMultiStyleConfig({ baseStyle });

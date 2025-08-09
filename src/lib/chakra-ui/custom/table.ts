@@ -19,7 +19,7 @@ const variantSolid = definePartsStyle((props) => {
       // borderColor: "table.border",
       height: "40px",
       textTransform: "capitalize",
-      color: mode("gray.600", "whiteAlpha.100"),
+      color: mode("gray.600", "whiteAlpha.800")(props),
       fontWeight: 500,
       "&:first-of-type": {
         borderTopLeftRadius: "xl",

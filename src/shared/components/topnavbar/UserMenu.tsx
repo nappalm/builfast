@@ -1,4 +1,5 @@
 import { useAuth, useAuthenticatedUser } from "@/features/auth";
+import { SETTINGS_PATHS } from "@/features/settings";
 import {
   Avatar,
   AvatarBadge,
@@ -6,14 +7,20 @@ import {
   HStack,
   Menu,
   MenuButton,
+  MenuDivider,
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { IconChevronDown } from "@tabler/icons-react";
+import { IconChevronDown, IconLogout, IconSettings } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
 
 export default function UserMenu() {
+  const navigate = useNavigate();
+
   const { signOut, loading: loadingLogout } = useAuth();
   const { user, loading } = useAuthenticatedUser();
+
+  const handleNavigate = (path: string) => navigate(path);
 
   return (
     <HStack>
@@ -34,7 +41,20 @@ export default function UserMenu() {
           {user?.user_metadata?.name}
         </MenuButton>
         <MenuList>
-          <MenuItem onClick={signOut}>Logout</MenuItem>
+          <MenuItem
+            onClick={() => handleNavigate(SETTINGS_PATHS.base)}
+            icon={<IconSettings size={18} />}
+          >
+            Profile settings
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem
+            onClick={signOut}
+            icon={<IconLogout size={18} />}
+            color="red.500"
+          >
+            Logout
+          </MenuItem>
         </MenuList>
       </Menu>
     </HStack>

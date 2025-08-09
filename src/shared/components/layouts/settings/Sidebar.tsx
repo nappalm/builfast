@@ -47,6 +47,7 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Account",
     icon: <IconUserCircle {...iconProps} />,
+    variant: "solid",
   },
   {
     title: "Notifications",

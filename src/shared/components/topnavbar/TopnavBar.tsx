@@ -1,10 +1,11 @@
 import { HStack, Image, useColorModeValue } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import ToggleThemeButton from "./ToggleThemeButton";
 import UserMenu from "./UserMenu";
 
 export default function Topnavbar() {
-  const bg = useColorModeValue("transparent", "whiteAlpha.200");
-  const borderColor = useColorModeValue("gray.200", "gray.700");
+  const bg = useColorModeValue("transparent", "gray.900");
+  const borderColor = useColorModeValue("gray.200", "gray.800");
 
   return (
     <HStack
@@ -15,7 +16,9 @@ export default function Topnavbar() {
       borderBottom="1px solid"
       borderColor={borderColor}
     >
-      <Image src="/logo.png" alt="logo" />
+      <Link to="/">
+        <Image src="/logo.png" alt="logo" />
+      </Link>
       <HStack>
         <ToggleThemeButton />
         <UserMenu />

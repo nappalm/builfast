@@ -28,9 +28,10 @@ const variantGhost = defineStyle((props) => {
 
   if (c === "gray") {
     return {
-      color: mode(`gray.800`, `whiteAlpha.900`)(props),
+      color: mode(`gray.700`, `whiteAlpha.700`)(props),
       _hover: {
-        bg: mode(`gray.300`, `whiteAlpha.200`)(props),
+        bg: mode(`gray.200`, `whiteAlpha.200`)(props),
+        color: mode(`gray.900`, `whiteAlpha.900`)(props),
       },
       _active: { bg: mode(`gray.200`, `whiteAlpha.300`)(props) },
     };
@@ -92,18 +93,18 @@ const variantSolid = defineStyle((props) => {
   const { colorScheme: c } = props;
 
   if (c === "gray") {
-    const bg = mode(`gray.300`, `whiteAlpha.200`)(props);
+    const bg = mode(`gray.200`, `whiteAlpha.200`)(props);
 
     return {
       bg,
-      color: mode(`gray.800`, `whiteAlpha.900`)(props),
+      color: mode(`gray.900`, `whiteAlpha.900`)(props),
       _hover: {
         bg: mode(`gray.200`, `whiteAlpha.300`)(props),
         _disabled: {
           bg,
         },
       },
-      _active: { bg: mode(`gray.300`, `whiteAlpha.400`)(props) },
+      _active: { bg: mode(`gray.200`, `whiteAlpha.400`)(props) },
     };
   }
 
