@@ -8,6 +8,7 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 import { FC, ReactElement, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 type ButtonProps = {
   size: string;
@@ -22,12 +23,13 @@ type IconProps = {
 
 type SubmenuItem = {
   title: string;
+  path?: string;
 };
 
 type SidebarItem = {
   title: string;
+  path?: string;
   icon?: ReactElement;
-  variant?: string;
   isHeader?: boolean;
   submenu?: SubmenuItem[];
 };
@@ -47,11 +49,12 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Account",
     icon: <IconUserCircle {...iconProps} />,
-    variant: "solid",
+    path: "/settings",
   },
   {
     title: "Notifications",
     icon: <IconBell {...iconProps} />,
+    path: "/settings/notifications",
   },
   {
     title: "Plans and security",
@@ -60,14 +63,17 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Billing and Plans",
     icon: <IconCreditCard {...iconProps} />,
+    path: "/settings/billing-plans",
   },
   {
     title: "Password and Authentication",
     icon: <IconShieldBolt {...iconProps} />,
+    path: "/settings/password-authentication",
   },
 ];
 
 const Sidebar: FC = () => {
+  const { pathname } = useLocation();
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
 
   const handleToggleSubmenu = (title: string) => {
@@ -92,12 +98,16 @@ const Sidebar: FC = () => {
         }
 
         if (item.submenu) {
-          const isOpen = openSubmenus[item.title];
+          const isSubmenuActive = item.submenu.some(
+            (sub) => sub.path === pathname,
+          );
+          const isOpen = openSubmenus[item.title] ?? isSubmenuActive;
+
           return (
             <Box key={index} w="full">
               <Button
                 {...buttonProps}
-                w="inherit"
+                w="full"
                 rightIcon={
                   isOpen ? (
                     <IconChevronUp size={16} />
@@ -115,15 +125,17 @@ const Sidebar: FC = () => {
               <Collapse in={isOpen}>
                 <Stack mt={1} gap="1px">
                   {item.submenu.map((subItem) => (
-                    <Button
-                      {...buttonProps}
-                      w="inherit"
-                      key={subItem.title}
-                      pl={9}
-                      fontSize="xs"
-                    >
-                      {subItem.title}
-                    </Button>
+                    <Link to={subItem.path ?? "/"} key={subItem.title}>
+                      <Button
+                        {...buttonProps}
+                        w="full"
+                        pl={9}
+                        fontSize="xs"
+                        variant={pathname === subItem.path ? "solid" : "ghost"}
+                      >
+                        {subItem.title}
+                      </Button>
+                    </Link>
                   ))}
                 </Stack>
               </Collapse>
@@ -131,34 +143,36 @@ const Sidebar: FC = () => {
           );
         }
 
+        const isActive = pathname === item.path;
+
         return (
           <Box
             key={index}
             position="relative"
             w="full"
-            _before={
-              item.variant === "solid"
-                ? {
-                    content: "''",
-                    position: "absolute",
-                    w: "4px",
-                    h: "70%",
-                    bg: "blue.500",
-                    left: -2,
-                    top: "10%",
-                    borderRadius: "full",
-                  }
-                : undefined
-            }
+            _before={{
+              content: "''",
+              position: "absolute",
+              w: "4px",
+              h: "70%",
+              bg: "blue.500",
+              left: -2,
+              top: "10%",
+              borderRadius: "full",
+              opacity: isActive ? 1 : 0,
+              transition: "opacity 0.2s ease-in-out",
+            }}
           >
-            <Button
-              {...buttonProps}
-              variant={item.variant || "ghost"}
-              leftIcon={item.icon}
-              w="inherit"
-            >
-              {item.title}
-            </Button>
+            <Link to={item.path ?? "/"}>
+              <Button
+                {...buttonProps}
+                variant={isActive ? "solid" : "ghost"}
+                leftIcon={item.icon}
+                w="full"
+              >
+                {item.title}
+              </Button>
+            </Link>
           </Box>
         );
       })}

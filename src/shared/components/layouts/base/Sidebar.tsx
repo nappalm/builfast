@@ -22,6 +22,7 @@ import {
   IconWebhook,
 } from "@tabler/icons-react";
 import { FC, ReactElement, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 type ButtonProps = {
   size: string;
@@ -36,14 +37,15 @@ type IconProps = {
 
 type SubmenuItem = {
   title: string;
+  path: string;
 };
 
 type SidebarItem = {
   title: string;
   icon?: ReactElement;
-  variant?: string;
   isHeader?: boolean;
   submenu?: SubmenuItem[];
+  path?: string;
 };
 
 const buttonProps: ButtonProps = {
@@ -61,15 +63,17 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "General",
     icon: <IconSettings {...iconProps} />,
-    variant: "solid",
+    path: "/settings/general",
   },
   {
     title: "Collaborators",
     icon: <IconUsers {...iconProps} />,
+    path: "/settings/collaborators",
   },
   {
     title: "Moderation options",
     icon: <IconMessages {...iconProps} />,
+    path: "/settings/moderation-options",
   },
   {
     title: "Code and automatitation",
@@ -78,50 +82,62 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Branchs",
     icon: <IconGitBranch {...iconProps} />,
+    path: "/settings/branchs",
   },
   {
     title: "Tags",
     icon: <IconTag {...iconProps} />,
+    path: "/settings/tags",
   },
   {
     title: "Rules",
     icon: <IconBookUpload {...iconProps} />,
+    path: "/settings/rules",
   },
   {
     title: "Actions",
     icon: <IconBrandParsinta {...iconProps} />,
+    path: "/settings/actions",
   },
   {
     title: "Models",
     icon: <IconShape {...iconProps} />,
+    path: "/settings/models",
   },
   {
     title: "Webhooks",
     icon: <IconWebhook {...iconProps} />,
+    path: "/settings/webhooks",
   },
   {
     title: "Copilot",
     icon: <IconBrandGithubCopilot {...iconProps} />,
+    path: "/settings/copilot",
     submenu: [
       {
         title: "Code review",
+        path: "/settings/copilot/code-review",
       },
       {
         title: "Coding agent",
+        path: "/settings/copilot/coding-agent",
       },
     ],
   },
   {
     title: "Environtments",
     icon: <IconServer {...iconProps} />,
+    path: "/settings/environtments",
   },
   {
     title: "Codespaces",
     icon: <IconDevicesPc {...iconProps} />,
+    path: "/settings/codespaces",
   },
   {
     title: "Pages",
     icon: <IconAppWindow {...iconProps} />,
+    path: "/settings/pages",
   },
   {
     title: "Secutiry",
@@ -130,23 +146,34 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Advanced Secutiry",
     icon: <IconShieldCheck {...iconProps} />,
+    path: "/settings/advanced-security",
+  },
+  {
+    title: "Password authentication",
+    icon: <IconKey {...iconProps} />,
+    path: "/settings/password-authentication",
   },
   {
     title: "Deploy keys",
     icon: <IconKey {...iconProps} />,
+    path: "/settings/deploy-keys",
   },
   {
     title: "Secrets and variables",
     icon: <IconSquareAsterisk {...iconProps} />,
+    path: "/settings/secrets-and-variables",
     submenu: [
       {
         title: "Actions",
+        path: "/settings/secrets-and-variables/actions",
       },
       {
         title: "Dependabot",
+        path: "/settings/secrets-and-variables/dependabot",
       },
       {
         title: "Codespaces",
+        path: "/settings/secrets-and-variables/codespaces",
       },
     ],
   },
@@ -157,14 +184,17 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "GitHub Apps",
     icon: <IconApps {...iconProps} />,
+    path: "/settings/github-apps",
   },
   {
     title: "Email notifications",
     icon: <IconMail {...iconProps} />,
+    path: "/settings/email-notifications",
   },
 ];
 
 const Sidebar: FC = () => {
+  const { pathname } = useLocation();
   const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
 
   const handleToggleSubmenu = (title: string) => {
@@ -218,6 +248,7 @@ const Sidebar: FC = () => {
                       key={subItem.title}
                       pl={9}
                       fontSize="xs"
+                      variant={pathname === subItem.path ? "solid" : "ghost"}
                     >
                       {subItem.title}
                     </Button>
@@ -234,7 +265,7 @@ const Sidebar: FC = () => {
             position="relative"
             w="full"
             _before={
-              item.variant === "solid"
+              pathname === item.path
                 ? {
                     content: "''",
                     position: "absolute",
@@ -250,7 +281,7 @@ const Sidebar: FC = () => {
           >
             <Button
               {...buttonProps}
-              variant={item.variant || "ghost"}
+              variant={pathname === item.path ? "solid" : "ghost"}
               leftIcon={item.icon}
               w="inherit"
             >

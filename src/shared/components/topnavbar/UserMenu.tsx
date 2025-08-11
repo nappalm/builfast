@@ -20,6 +20,8 @@ export default function UserMenu() {
   const { signOut, loading: loadingLogout } = useAuth();
   const { user, loading } = useAuthenticatedUser();
 
+  console.log({ user });
+
   const handleNavigate = (path: string) => navigate(path);
 
   return (
