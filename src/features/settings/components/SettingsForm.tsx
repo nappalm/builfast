@@ -26,7 +26,7 @@ export default function SettingsForm() {
                 <Text color="gray.500">Authenticate with google</Text>
               </Stack>
             </HStack>
-            <Tag size="lg" colorScheme="green">
+            <Tag size="lg" colorScheme="green" variant="subtle">
               Current
             </Tag>
           </HStack>

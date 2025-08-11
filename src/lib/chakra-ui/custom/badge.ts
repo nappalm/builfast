@@ -33,13 +33,13 @@ const variantSolid = defineStyle((props) => {
 
 const variantSubtle = defineStyle((props) => {
   const { colorScheme: c, theme } = props;
-  const darkBg = transparentize(`${c}.200`, 0.16)(theme);
+  const darkBg = transparentize(`${c}.500`, 0.16)(theme);
   return {
-    [vars.bg.variable]: `colors.${c}.100`,
-    [vars.color.variable]: `colors.${c}.800`,
+    [vars.bg.variable]: `colors.${c}.500`,
+    [vars.color.variable]: `colors.${c}.50`,
     _dark: {
       [vars.bg.variable]: darkBg,
-      [vars.color.variable]: `colors.${c}.200`,
+      [vars.color.variable]: `colors.${c}.500`,
     },
   };
 });

@@ -63,7 +63,20 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Billing and Plans",
     icon: <IconCreditCard {...iconProps} />,
-    path: "/settings/billing-plans",
+    submenu: [
+      {
+        title: "Licensing",
+        path: "/settings/billing-plans/licensing",
+      },
+      {
+        title: "Payment information",
+        path: "/settings/billing-plans/payment-information",
+      },
+      {
+        title: "Payment history",
+        path: "/settings/billing-plans/payment-history",
+      },
+    ],
   },
   {
     title: "Password and Authentication",
@@ -124,19 +137,23 @@ const Sidebar: FC = () => {
               </Button>
               <Collapse in={isOpen}>
                 <Stack mt={1} gap="1px">
-                  {item.submenu.map((subItem) => (
-                    <Link to={subItem.path ?? "/"} key={subItem.title}>
-                      <Button
-                        {...buttonProps}
-                        w="full"
-                        pl={9}
-                        fontSize="xs"
-                        variant={pathname === subItem.path ? "solid" : "ghost"}
-                      >
-                        {subItem.title}
-                      </Button>
-                    </Link>
-                  ))}
+                  {item.submenu.map((subItem) => {
+                    return (
+                      <Link to={subItem.path ?? "/"} key={subItem.title}>
+                        <Button
+                          {...buttonProps}
+                          w="full"
+                          pl={9}
+                          fontSize="xs"
+                          variant={
+                            pathname === subItem.path ? "solid" : "ghost"
+                          }
+                        >
+                          {subItem.title}
+                        </Button>
+                      </Link>
+                    );
+                  })}
                 </Stack>
               </Collapse>
             </Box>

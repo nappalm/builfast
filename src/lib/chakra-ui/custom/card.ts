@@ -38,6 +38,14 @@ const outlineVariant = definePartsStyle((props) => ({
   body: {
     bg: "transparent",
   },
+  header: {
+    borderRadius: "inherit",
+    borderBottomRadius: 0,
+    bg: mode("gray.300", "whiteAlpha.200")(props),
+  },
+  footer: {
+    borderTopWidth: "1px",
+  },
 }));
 
 const sizes = {};
