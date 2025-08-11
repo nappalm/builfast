@@ -25,7 +25,7 @@ export default function LicensingForm() {
       <Card size="sm">
         <CardHeader>
           <HStack justify="space-between">
-            <HStack gap={3}>
+            <HStack gap={3} alignItems="flex-start">
               <IconPentagon />
               <Stack gap={0}>
                 <Text fontWeight="bold">Github Copilot</Text>
@@ -54,7 +54,7 @@ export default function LicensingForm() {
       <Card size="sm">
         <CardHeader>
           <HStack justify="space-between">
-            <HStack gap={3}>
+            <HStack gap={3} alignItems="flex-start">
               <IconPentagon />
               <Stack gap={0}>
                 <Text fontWeight="bold">Github Free</Text>
