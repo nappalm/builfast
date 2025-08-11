@@ -1,5 +1,6 @@
 import { cardAnatomy } from "@chakra-ui/anatomy";
 import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(cardAnatomy.keys);
@@ -9,47 +10,47 @@ const baseStyle = definePartsStyle({
     borderRadius: "xl",
   },
   header: {},
-  body: {},
+  body: {
+    borderRadius: "inherit",
+  },
   footer: {},
 });
 
-const secondaryVariant = definePartsStyle(() => ({
+const solidVariant = definePartsStyle((props) => ({
   container: {
     boxShadow: "none",
-    // background: mode(
-    //   "linear-gradient(160deg, rgba(200, 200, 200, 1) 0%, rgba(240, 240, 240, 1) 100%)",
-    //   "linear-gradient(140deg, #ffffff30 0%, #ffffff00 100%)",
-    // )(props),
-    bg: "card.bg",
-    borderWidth: "1px",
-    borderColor: "card.border",
     transition: "all ease-in-out 300ms",
   },
   body: {
-    // bg: mode("#f5f5f5", "nocturnal.500")(props),
-    // m: "0.090rem",
-    borderRadius: "10px",
-    padding: "13px",
-    // _after: {
-    //   content: "''",
-    //   position: "absolute",
-    //   backgroundImage: "radial-gradient(circle, #ffffff20, #fff0 50%)",
-    //   bottom: "0px",
-    //   left: "0",
-    //   right: "0",
-    //   height: "1px",
-    //   width: "100%",
-    // },
+    bg: mode(`gray.200`, `whiteAlpha.200`)(props),
+    borderRadius: "xl",
+  },
+}));
+
+const outlineVariant = definePartsStyle((props) => ({
+  container: {
+    boxShadow: "none",
+    transition: "all ease-in-out 300ms",
+    borderWidth: "1px",
+    borderColor: mode("gray.300", "whiteAlpha.300")(props),
+    bg: "transparent",
+  },
+  body: {
+    bg: "transparent",
   },
 }));
 
 const sizes = {};
 const variants = {
-  secondary: secondaryVariant,
+  solid: solidVariant,
+  outline: outlineVariant,
 };
 
 export default defineMultiStyleConfig({
   baseStyle,
   sizes,
   variants,
+  defaultProps: {
+    variant: "outline",
+  },
 });

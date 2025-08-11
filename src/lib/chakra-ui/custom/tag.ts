@@ -4,7 +4,7 @@ import {
   cssVar,
   defineStyle,
 } from "@chakra-ui/styled-system";
-import { badgeTheme } from "./badge";
+import { badgeTheme, badgeVars } from "./badge";
 
 const { defineMultiStyleConfig, definePartsStyle } =
   createMultiStyleConfigHelpers(parts.keys);
@@ -18,21 +18,19 @@ const $fontSize = cssVar("tag-font-size");
 const $paddingX = cssVar("tag-padding-inline");
 
 const baseStyleContainer = defineStyle({
-  fontWeight: 500,
-  lineHeight: 1,
+  fontWeight: "medium",
+  lineHeight: 1.2,
   outline: 0,
-  [$color.variable]: "#ffffff99",
-  [$bg.variable]: "colors.black2a",
-  [$shadow.variable]: "none",
+  [$color.variable]: badgeVars.color.reference,
+  [$bg.variable]: badgeVars.bg.reference,
+  [$shadow.variable]: badgeVars.shadow.reference,
   color: $color.reference,
   bg: $bg.reference,
-  boxShadow: "none",
-  borderRadius: "lg",
+  boxShadow: $shadow.reference,
+  borderRadius: "full",
   minH: $minH.reference,
   minW: $minW.reference,
-  fontSize: "13px",
-  border: "1px solid",
-  borderColor: "#ffffff10",
+  fontSize: $fontSize.reference,
   px: $paddingX.reference,
   _focusVisible: {
     [$shadow.variable]: "shadows.outline",
@@ -81,7 +79,7 @@ const sizes = {
       [$minH.variable]: "sizes.5",
       [$minW.variable]: "sizes.5",
       [$fontSize.variable]: "fontSizes.xs",
-      [$paddingX.variable]: "space.1",
+      [$paddingX.variable]: "space.2",
     },
     closeButton: {
       marginEnd: "-2px",
@@ -123,7 +121,7 @@ export default defineMultiStyleConfig({
   baseStyle,
   sizes,
   defaultProps: {
-    size: "sm",
+    size: "md",
     variant: "subtle",
     colorScheme: "gray",
   },
