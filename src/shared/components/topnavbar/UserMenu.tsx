@@ -1,5 +1,5 @@
-import { useAuth, useAuthenticatedUser } from "@/features/auth";
 import { SETTINGS_PATHS } from "@/features/settings";
+import { useAuth, useAuthenticatedUser } from "@/shared/hooks";
 import {
   Avatar,
   AvatarBadge,
@@ -11,7 +11,12 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { IconChevronDown, IconLogout, IconSettings } from "@tabler/icons-react";
+import {
+  IconChevronDown,
+  IconUserFilled,
+  IconLogout,
+  IconSettings,
+} from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
 export default function UserMenu() {
@@ -19,8 +24,6 @@ export default function UserMenu() {
 
   const { signOut, loading: loadingLogout } = useAuth();
   const { user, loading } = useAuthenticatedUser();
-
-  console.log({ user });
 
   const handleNavigate = (path: string) => navigate(path);
 
@@ -30,6 +33,7 @@ export default function UserMenu() {
         src={user?.user_metadata?.avatar_url}
         size="xs"
         name={user?.user_metadata?.name}
+        icon={<IconUserFilled size={18} />}
       >
         <AvatarBadge boxSize="1em" bg="green.500" />
       </Avatar>
@@ -40,7 +44,7 @@ export default function UserMenu() {
           isLoading={loading || loadingLogout}
           rightIcon={<IconChevronDown size={16} />}
         >
-          {user?.user_metadata?.name}
+          {user?.user_metadata?.name ?? user?.email}
         </MenuButton>
         <MenuList>
           <MenuItem

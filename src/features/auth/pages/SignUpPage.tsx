@@ -1,6 +1,6 @@
 import { Container, Stack } from "@chakra-ui/react";
 import SignUpForm from "../components/SignUpForm";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "@/shared";
 
 export default function SignUpPage() {
   const { signUpWithEmail } = useAuth();

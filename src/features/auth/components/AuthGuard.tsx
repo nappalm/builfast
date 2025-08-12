@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 import { AUTH_PATHS } from "@/features/auth/router/paths";
-import useAuthenticatedUser from "../hooks/useAuthenticatedUser";
+import { useAuthenticatedUser } from "@/shared";
 
 export default function AuthGuard() {
   const { user, loading } = useAuthenticatedUser();

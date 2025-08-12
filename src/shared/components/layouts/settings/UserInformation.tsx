@@ -1,4 +1,4 @@
-import { useAuthenticatedUser } from "@/features/auth";
+import { useAuthenticatedUser } from "@/shared/hooks";
 import { Avatar, Heading, HStack, Stack, Text } from "@chakra-ui/react";
 
 export default function UserInformation() {
