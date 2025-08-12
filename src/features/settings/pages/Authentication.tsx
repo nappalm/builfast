@@ -5,7 +5,7 @@ export default function Authentication() {
   return (
     <Stack>
       <Heading fontWeight={500} size="lg">
-        Password And Authentication
+        Authentication
       </Heading>
       <AuthenticationForm />
     </Stack>

@@ -6,9 +6,9 @@ import { useAuthenticatedUser } from "@/shared";
 export default function AuthGuard() {
   const { user, loading } = useAuthenticatedUser();
 
-  if (loading) {
+  if (loading && user === null) {
     // Optionally, render a loading spinner or skeleton here
-    return null;
+    return <div>loading...</div>;
   }
 
   if (!user) {

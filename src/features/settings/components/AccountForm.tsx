@@ -1,12 +1,18 @@
-import { FormProvider, RHFInput } from "@/shared";
+import { FormProvider, RHFInput, useAuthenticatedUser } from "@/shared";
 import { Button, Divider, Stack, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
 export default function AccountForm() {
-  const methods = useForm();
+  const { user } = useAuthenticatedUser();
+  const methods = useForm({
+    defaultValues: {
+      // email: user.email,
+      // name: user?.user_metadata?.name,
+    },
+  });
 
   return (
-    <FormProvider methods={methods}>
+    <FormProvider methods={methods} onSubmit={methods.handleSubmit(() => {})}>
       <Stack>
         <RHFInput name="name" label="Name" />
         <RHFInput name="email" label="Email" isDisabled />
