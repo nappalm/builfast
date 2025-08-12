@@ -41,7 +41,7 @@ const outlineVariant = definePartsStyle((props) => ({
   header: {
     borderRadius: "inherit",
     borderBottomRadius: 0,
-    bg: mode("gray.300", "whiteAlpha.200")(props),
+    bg: mode("gray.200", "whiteAlpha.200")(props),
   },
   footer: {
     borderTopWidth: "1px",

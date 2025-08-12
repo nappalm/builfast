@@ -13,7 +13,7 @@ import {
   IconPlayerPlay,
 } from "@tabler/icons-react";
 
-export default function SettingsForm() {
+export default function AuthenticationForm() {
   return (
     <Stack>
       <Card size="sm">

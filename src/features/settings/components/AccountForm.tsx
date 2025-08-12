@@ -1,5 +1,5 @@
 import { FormProvider, RHFInput } from "@/shared";
-import { Button, Stack, Text } from "@chakra-ui/react";
+import { Button, Divider, Stack, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 
 export default function AccountForm() {
@@ -18,6 +18,21 @@ export default function AccountForm() {
         </Text>
         <Button type="submit" w="fit-content" colorScheme="blue">
           Update profile
+        </Button>
+        <Divider my={2} />
+        <Text fontSize="lg" fontWeight="bold">
+          Permanently Delete Account
+        </Text>
+        <Text fontSize="sm" color="gray.600">
+          This action cannot be undone
+        </Text>
+        <Text fontSize="xs" color="gray.500">
+          Deleting your account will remove all your personal data, settings,
+          and history. Once deleted, this information cannot be recovered.
+        </Text>
+
+        <Button type="submit" w="fit-content" colorScheme="red" variant="ghost">
+          Delete my account
         </Button>
       </Stack>
     </FormProvider>

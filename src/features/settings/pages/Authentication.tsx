@@ -1,13 +1,13 @@
 import { Heading, Stack } from "@chakra-ui/react";
-import SettingsForm from "../components/SettingsForm";
+import AuthenticationForm from "../components/AuthenticationForm";
 
-export default function PasswordAndAuthentication() {
+export default function Authentication() {
   return (
     <Stack>
       <Heading fontWeight={500} size="lg">
         Password And Authentication
       </Heading>
-      <SettingsForm />
+      <AuthenticationForm />
     </Stack>
   );
 }

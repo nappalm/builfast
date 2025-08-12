@@ -81,7 +81,16 @@ const sidebarItems: SidebarItem[] = [
   {
     title: "Password and Authentication",
     icon: <IconShieldBolt {...iconProps} />,
-    path: "/settings/password-authentication",
+    submenu: [
+      {
+        title: "Authentication",
+        path: "/settings/password-authentication/authentication",
+      },
+      {
+        title: "Change password",
+        path: "/settings/password-authentication/change-password",
+      },
+    ],
   },
 ];
 

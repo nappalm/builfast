@@ -29,7 +29,7 @@ const variantSolid = definePartsStyle((props) => {
         borderTopRightRadius: "xl",
         borderBottomRightRadius: "xl",
       },
-      bg: mode("gray.300", "whiteAlpha.200")(props),
+      bg: mode("gray.200", "whiteAlpha.200")(props),
       "&[data-is-numeric=true]": {
         textAlign: "end",
       },

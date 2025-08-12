@@ -109,7 +109,7 @@ const variantSolid = defineStyle((props) => {
   }
 
   const {
-    bg = `${c}.100`,
+    bg = `${c}.500`,
     color = "white",
     hoverBg = `${c}.500`,
     activeBg = `${c}.500`,

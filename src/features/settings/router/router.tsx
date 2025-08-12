@@ -1,6 +1,7 @@
 import Base from "../pages";
+import Authentication from "../pages/Authentication";
+import ChangePassword from "../pages/ChangePassword";
 import Licensing from "../pages/Licensing";
-import PasswordAndAuthentication from "../pages/PasswordAndAuthentication";
 import PaymentHistory from "../pages/PaymentHistory";
 import PaymentInformation from "../pages/PaymentInformation";
 
@@ -10,8 +11,12 @@ export const settingsRoutes = [
     element: <Base />,
   },
   {
-    path: "/settings/password-authentication",
-    element: <PasswordAndAuthentication />,
+    path: "/settings/password-authentication/authentication",
+    element: <Authentication />,
+  },
+  {
+    path: "/settings/password-authentication/change-password",
+    element: <ChangePassword />,
   },
   {
     path: "/settings/billing-plans/licensing",
